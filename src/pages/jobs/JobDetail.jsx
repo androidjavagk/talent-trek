@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { API_ENDPOINTS } from '../../config/api';
 
 const JobDetail = () => {
   const { id } = useParams();
@@ -12,7 +13,7 @@ const JobDetail = () => {
   useEffect(() => {
     const fetchJob = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/jobs`);
+        const response = await fetch(API_ENDPOINTS.JOBS);
         const data = await response.json();
         if (data.success) {
           const foundJob = data.jobs.find(j => j._id === id);

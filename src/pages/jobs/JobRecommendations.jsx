@@ -3,6 +3,7 @@ import { useAuth } from '../../context/AuthContext';
 import { IoBriefcaseOutline, IoLocationOutline, IoTimeOutline, IoStarOutline, IoCloudUploadOutline, IoCheckmarkCircleOutline } from 'react-icons/io5';
 import toast from 'react-hot-toast';
 import './JobRecommendations.css';
+import { API_ENDPOINTS } from '../../config/api';
 
 const JobRecommendations = () => {
   const { user } = useAuth();
@@ -19,7 +20,7 @@ const JobRecommendations = () => {
   const fetchRecommendations = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3000/api/job-recommendations', {
+      const response = await fetch(API_ENDPOINTS.JOB_RECOMMENDATIONS, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -70,7 +71,7 @@ const JobRecommendations = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3000/api/upload-resume', {
+      const response = await fetch(API_ENDPOINTS.UPLOAD_RESUME, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
