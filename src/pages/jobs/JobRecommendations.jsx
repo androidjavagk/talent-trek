@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { IoBriefcaseOutline, IoLocationOutline, IoTimeOutline, IoStarOutline, IoCloudUploadOutline, IoCheckmarkCircleOutline } from 'react-icons/io5';
 import toast from 'react-hot-toast';
@@ -7,6 +8,7 @@ import { API_ENDPOINTS } from '../../config/api';
 
 const JobRecommendations = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [recommendations, setRecommendations] = useState([]);
   const [userSkills, setUserSkills] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -213,7 +215,12 @@ const JobRecommendations = () => {
                   </div>
 
                   <div className="job-actions">
-                    <button className="apply-btn">Apply Now</button>
+                    <button 
+                      className="apply-btn"
+                      onClick={() => navigate(`/jobs/${job._id}`)}
+                    >
+                      View & Apply
+                    </button>
                     <button className="save-btn">Save Job</button>
                   </div>
                 </div>
